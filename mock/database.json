@@ -1,0 +1,10 @@
+{
+  "pessoas": [
+    {
+      "id": "1",
+      "nome": "Lucas",
+      "email": "email@gmail.com",
+      "cidadeId": 1
+    }
+  ]
+}
