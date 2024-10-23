@@ -1,5 +1,5 @@
-import { Environment } from "../../environment";
-import { Api } from "../api/axios-config";
+import { Environment } from "../../../environment";
+import { Api } from "../axios-config";
 
 export interface IListagemPessoaProps {
     id: number;
