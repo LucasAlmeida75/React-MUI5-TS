@@ -11,7 +11,7 @@ export const AppRoutes = () => {
         setDrawerOptions([
             {
                 icon: "home",
-                label: "Página Inicial",
+                label: "Pagina Inicial",
                 path: "/pagina-inicial"
             },
             {
