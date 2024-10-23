@@ -3,22 +3,22 @@ import { FerramentasDaListagem } from "../../shared/components";
 import { LayoutBaseDePagina } from "../../shared/layouts";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { PessoasService, IListagemPessoaProps } from "../../shared/services/api/pessoas/PessoasService";
+import { CidadesService, IListagemCidadeProps } from "../../shared/services/api/cidades/CidadesService";
 import { Icon, IconButton, LinearProgress, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from "@mui/material";
 import { useDebounce } from "../../shared/hooks";
 import { Environment } from "../../shared/environment";
 
 
-interface IListagemDePessoasProps {
+interface IListagemDeCidadesProps {
     children?: React.ReactNode;
 }
 
-export const ListagemDePessoas: React.FC<IListagemDePessoasProps> = ({children}) => {
+export const ListagemDeCidades: React.FC<IListagemDeCidadesProps> = ({children}) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const { debounce } = useDebounce();
     const navigate = useNavigate();
 
-    const [rows, setRows] = useState<IListagemPessoaProps[]>([]);
+    const [rows, setRows] = useState<IListagemCidadeProps[]>([]);
     const [totalCount, setTotalCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -34,7 +34,7 @@ export const ListagemDePessoas: React.FC<IListagemDePessoasProps> = ({children})
         setIsLoading(true);
 
         debounce(() => {
-            PessoasService.getAll(pagina, busca)
+            CidadesService.getAll(pagina, busca)
             .then((result) => {
                 setIsLoading(false);
 
@@ -51,7 +51,7 @@ export const ListagemDePessoas: React.FC<IListagemDePessoasProps> = ({children})
 
     const handleDelete = (id: number) => {
         if (window.confirm("Tem certeza que deseja apagar o registro?")) {
-            PessoasService.deleteById(id)
+            CidadesService.deleteById(id)
                 .then((result) => {
                     if (result instanceof Error) {
                         alert(result.message);
@@ -67,14 +67,14 @@ export const ListagemDePessoas: React.FC<IListagemDePessoasProps> = ({children})
 
     return (
         <LayoutBaseDePagina
-            title="Listagem de Pessoas"
+            title="Listagem de Cidades"
             barraDeFerramentas={
                 <FerramentasDaListagem
                     mostrarInputBusca
                     mostrarBotaoNovo
                     textoDaBusca={busca}
                     textoBotaoNovo="Nova"
-                    aoClicarEmNovo={() => navigate("/pessoas/detalhe/nova")}
+                    aoClicarEmNovo={() => navigate("/cidades/detalhe/nova")}
                     aoMudarTextoDeBusca={texto => setSearchParams({ busca: texto, pagina: '1' }, { replace: true })}
                 />
             }>
@@ -85,7 +85,6 @@ export const ListagemDePessoas: React.FC<IListagemDePessoasProps> = ({children})
                             <TableRow>
                                 <TableCell width={100}>Ações</TableCell>
                                 <TableCell>Nome</TableCell>
-                                <TableCell>E-mail</TableCell>
                             </TableRow>
                         </TableHead>
 
@@ -96,12 +95,11 @@ export const ListagemDePessoas: React.FC<IListagemDePessoasProps> = ({children})
                                         <IconButton size="small" onClick={() => handleDelete(row.id)}>
                                             <Icon>delete</Icon>
                                         </IconButton>
-                                        <IconButton size="small" onClick={() => navigate(`/pessoas/detalhe/${row.id}`)}>
+                                        <IconButton size="small" onClick={() => navigate(`/cidades/detalhe/${row.id}`)}>
                                             <Icon>edit</Icon>
                                         </IconButton>
                                     </TableCell>
                                     <TableCell>{row.nome}</TableCell>
-                                    <TableCell>{row.email}</TableCell>
                                 </TableRow>
                             ))}
 
