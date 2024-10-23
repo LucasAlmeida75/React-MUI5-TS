@@ -25,10 +25,10 @@
       "cidadeId": 1
     },
     {
-      "id": "6",
-      "nome": "Tomás Benício Alexandre Alves",
+      "cidadeId": 3,
       "email": "tomas_benicio_alves@bfgadvogados.com",
-      "cidadeId": 1
+      "nome": "Tomás Benício Alexandre Alves",
+      "id": "6"
     },
     {
       "id": "7",
@@ -61,16 +61,40 @@
       "cidadeId": 1
     },
     {
-      "nome": "Lívia Sophia Ayla Silva",
+      "cidadeId": 4,
       "email": "liviasophia@arablock.com.br",
-      "cidadeId": 1,
+      "nome": "Lívia Sophia Ayla Silva",
       "id": "12"
     }
   ],
   "cidades": [
     {
-      "nome": "Cachoeirinhaa",
+      "nome": "Cachoeirinha",
       "id": "1"
+    },
+    {
+      "nome": "Gravataí",
+      "id": "2"
+    },
+    {
+      "nome": "Porto Alegre",
+      "id": "3"
+    },
+    {
+      "nome": "Novo Hamburgo",
+      "id": "4"
+    },
+    {
+      "nome": "Tramandaí",
+      "id": "5"
+    },
+    {
+      "nome": "Lajeado",
+      "id": "6"
+    },
+    {
+      "nome": "São Leopoldo",
+      "id": "7"
     }
   ]
 }

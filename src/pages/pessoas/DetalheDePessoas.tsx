@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Box, Grid2, LinearProgress, Paper, TextField, Typography } from "@mui/material";
 import { PessoasService } from "../../shared/services/api/pessoas/PessoasService";
+import { AutoCompleteCidade } from "./components/AutoCompleteCidade";
 import { FerramentasDeDetalhe } from "../../shared/components";
 import { useNavigate, useParams } from "react-router-dom";
 import { LayoutBaseDePagina } from "../../shared/layouts";
-import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-interface IFormProps {
+export interface IFormProps {
     nome: string;
     email: string;
     cidadeId: number;
@@ -27,7 +28,7 @@ export const DetalheDePessoas: React.FC = () => {
     const isSaveAndClose = useRef(false);
     const navigate = useNavigate();
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<IFormProps>({resolver: yupResolver(formValidationSchema)});
+    const { control, register, handleSubmit, formState: { errors }, reset } = useForm<IFormProps>({resolver: yupResolver(formValidationSchema)});
 
     const onSubmit = (data: IFormProps) => {
         setIsLoading(true);
@@ -186,18 +187,7 @@ export const DetalheDePessoas: React.FC = () => {
                         {!isLoading && (
                             <Grid2 container direction="row" spacing={2}>
                                 <Grid2 size={{ xs: 12, sm: 8, md: 6, lg: 4, xl: 2 }}>
-                                    <TextField
-                                        label="Cidade"
-                                        fullWidth
-                                        size="small"
-                                        error={!!errors.cidadeId}
-                                        helperText={errors.cidadeId ? (
-                                            <span style={{ display: 'block', height: '1em', color: 'red' }}>
-                                                {errors.cidadeId.message}
-                                            </span>
-                                        ) : undefined}
-                                        {...register("cidadeId")}
-                                    />
+                                    <AutoCompleteCidade control={control} isExternalLoading={isLoading}/>
                                 </Grid2>
                             </Grid2>
                         )}
