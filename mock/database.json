@@ -96,5 +96,8 @@
       "nome": "São Leopoldo",
       "id": "7"
     }
-  ]
+  ],
+  "auth": {
+    "accessToken": "abc"
+  }
 }
